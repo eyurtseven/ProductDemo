@@ -47,9 +47,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Infrastructure\IProductRepository.cs" />
     <Compile Include="Infrastructure\ICategoryRepository.cs" />
     <Compile Include="Infrastructure\IRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\ProductRepository.cs" />
     <Compile Include="Repository\CategoryRepository.cs" />
   </ItemGroup>
   <ItemGroup>

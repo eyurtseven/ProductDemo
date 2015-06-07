@@ -21,6 +21,7 @@ namespace ProductDemo.Admin
             builder.RegisterControllers(typeof(MvcApplication).Assembly);
 
             builder.RegisterType<CategoryRepository>().As<ICategoryRepository>().WithParameter("context", new ProductDemoContext());
+            builder.RegisterType<ProductRepository>().As<IProductRepository>().WithParameter("context", new ProductDemoContext());
 
             var container = builder.Build();
 
