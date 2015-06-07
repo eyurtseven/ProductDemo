@@ -49,6 +49,8 @@
     <Compile Include="DataContext\ProductDemoContext.cs" />
     <Compile Include="Model\Category.cs" />
     <Compile Include="Model\Product.cs" />
+    <Compile Include="Model\ProductFeature.cs" />
+    <Compile Include="Model\ProductImage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

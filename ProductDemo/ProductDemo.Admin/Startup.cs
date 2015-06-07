@@ -8,7 +8,7 @@ namespace ProductDemo.Admin
     {
         public void Configuration(IAppBuilder app)
         {
-            ConfigureAuth(app);
+            
         }
     }
 }
