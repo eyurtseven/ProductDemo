@@ -1,11 +1,11 @@
 ﻿@model ProductDemo.Data.Model.Category
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title += " Kategori Düzenleme";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Edit</h2>
+<h2>Kategori Düzenleme</h2>
 
 
 @using (Html.BeginForm())
@@ -13,10 +13,8 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>Category</h4>
-        <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.Id)
+        @Html.HiddenFor(model => model.CategoryId)
 
         <div class="form-group">
             @Html.LabelFor(model => model.CategoryName, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -28,14 +26,14 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <input type="submit" value="Kaydet" class="btn btn-default" />
             </div>
         </div>
     </div>
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Listeye Dön", "Index")
 </div>
 
 @section Scripts {

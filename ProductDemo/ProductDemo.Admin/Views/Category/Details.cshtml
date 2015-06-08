@@ -1,15 +1,13 @@
 ﻿@model ProductDemo.Data.Model.Category
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title += " Kategori Detayı";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
+<h2>Kategori Detayı</h2>
 
 <div>
-    <h4>Category</h4>
-    <hr />
     <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.CategoryName)
@@ -22,6 +20,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Düzenle", "Edit", new { id = Model.CategoryId }) |
+    @Html.ActionLink("Listeye Dön", "Index")
 </p>

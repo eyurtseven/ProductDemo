@@ -11,12 +11,7 @@ namespace ProductDemo.Core.Repository
 {
     public class ProductRepository : IProductRepository
     {
-        private readonly ProductDemoContext _context;
-
-        public ProductRepository(ProductDemoContext context)
-        {
-            _context = context;
-        }
+        private readonly ProductDemoContext _context = new ProductDemoContext();
 
         public IEnumerable<Product> GetAll()
         {
@@ -25,7 +20,7 @@ namespace ProductDemo.Core.Repository
 
         public Product GetById(int id)
         {
-            return _context.Product.FirstOrDefault(x => x.Id == id);
+            return _context.Product.FirstOrDefault(x => x.ProductId == id);
         }
 
         public Product Get(Expression<Func<Product, bool>> expression)

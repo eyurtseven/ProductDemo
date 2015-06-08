@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System.Linq;
+using System.Net;
 using System.Web.Mvc;
 using ProductDemo.Core.Infrastructure;
 using ProductDemo.Data.Model;
@@ -8,15 +9,18 @@ namespace ProductDemo.Admin.Controllers
     public class ProductController : Controller
     {
         private readonly IProductRepository _productRepository;
+        private readonly ICategoryRepository _categoryRepository;
 
-        public ProductController(IProductRepository productRepository)
+        public ProductController(IProductRepository productRepository, ICategoryRepository categoryRepository)
         {
             _productRepository = productRepository;
+            _categoryRepository = categoryRepository;
         }
 
         public ActionResult Index()
         {
-            return View(_productRepository.GetAll());
+            var productList = _productRepository.GetAll().ToList();
+            return View(productList);
         }
 
         public ActionResult Details(int? id)
@@ -25,6 +29,7 @@ namespace ProductDemo.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+            SetCategoryList();
             var product = _productRepository.GetById(id.Value);
             if (product == null)
             {
@@ -35,15 +40,15 @@ namespace ProductDemo.Admin.Controllers
 
         public ActionResult Create()
         {
+            SetCategoryList();
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,ProductName")] Product product)
+        public ActionResult Create(Product product)
         {
-            if (!ModelState.IsValid) return View(product);
-            _productRepository.Update(product);
+            _productRepository.Insert(product);
             _productRepository.Save();
             return RedirectToAction("Index");
         }
@@ -59,14 +64,17 @@ namespace ProductDemo.Admin.Controllers
             {
                 return HttpNotFound();
             }
+            SetCategoryList(product.CategoryId);
+
             return View(product);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,ProductName")] Product product)
+        public ActionResult Edit(Product product)
         {
             if (!ModelState.IsValid) return View(product);
+            
             _productRepository.Update(product);
             _productRepository.Save();
             return RedirectToAction("Index");
@@ -78,8 +86,12 @@ namespace ProductDemo.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            _productRepository.Delete(id.Value);
-            return View();
+            var product = _productRepository.GetById(id.Value);
+            if (product == null)
+            {
+                return HttpNotFound();
+            }
+            return View(product);
         }
 
         [HttpPost, ActionName("Delete")]
@@ -89,6 +101,13 @@ namespace ProductDemo.Admin.Controllers
             _productRepository.Delete(id);
             _productRepository.Save();
             return RedirectToAction("Index");
+        }
+
+        private void SetCategoryList(object selectedCategory = null)
+        {
+            var categoryList = _categoryRepository.GetAll();
+            var selectList = new SelectList(categoryList, "CategoryId", "CategoryName", selectedCategory); 
+            ViewData.Add("CategoryId", selectList);
         }
     }
 }

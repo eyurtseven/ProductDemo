@@ -1,17 +1,20 @@
 ﻿@model IEnumerable<ProductDemo.Data.Model.Product>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title += " Ürünler";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Ürünler</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Yeni Ürün", "Create")
 </p>
 <table class="table">
     <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Category.CategoryName)
+        </th>
         <th>
             @Html.DisplayNameFor(model => model.ProductName)
         </th>
@@ -21,12 +24,15 @@
 @foreach (var item in Model) {
     <tr>
         <td>
+            @Html.DisplayFor(modelItem => item.Category.CategoryName)
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.ProductName)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            @Html.ActionLink("Düzenle", "Edit", new { id=item.ProductId }) |
+            @Html.ActionLink("Detaylar", "Details", new { id=item.ProductId }) |
+            @Html.ActionLink("Sil", "Delete", new { id=item.ProductId })
         </td>
     </tr>
 }

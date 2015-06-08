@@ -11,12 +11,7 @@ namespace ProductDemo.Core.Repository
 {
     public class CategoryRepository : ICategoryRepository
     {
-        private readonly ProductDemoContext _context;
-
-        public CategoryRepository(ProductDemoContext context)
-        {
-            _context = context;
-        }
+        private readonly ProductDemoContext _context = new ProductDemoContext();
 
         public IEnumerable<Category> GetAll()
         {
@@ -25,7 +20,7 @@ namespace ProductDemo.Core.Repository
 
         public Category GetById(int id)
         {
-            return _context.Category.FirstOrDefault(x => x.Id == id);
+            return _context.Category.FirstOrDefault(x => x.CategoryId == id);
         }
 
         public Category Get(Expression<Func<Category, bool>> expression)
