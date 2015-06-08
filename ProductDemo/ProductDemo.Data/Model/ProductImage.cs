@@ -13,7 +13,6 @@ namespace ProductDemo.Data.Model
 
         [Required]
         public virtual int ProductId { get; set; }
-        [Required]
         public virtual Product Product { get; set; }
     }
 }

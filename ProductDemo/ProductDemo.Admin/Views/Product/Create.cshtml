@@ -1,5 +1,4 @@
-﻿@using ProductDemo.Data.Model
-@model ProductDemo.Data.Model.Product
+﻿@model ProductDemo.Data.Model.Product
 
 @{
     ViewBag.Title += " Yeni Ürün";
@@ -29,7 +28,6 @@
                 @Html.ValidationMessageFor(model => model.ProductName, "", new { @class = "text-danger" })
             </div>
         </div>
-
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Kaydet" class="btn btn-default" />
