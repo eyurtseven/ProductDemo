@@ -13,7 +13,7 @@
     @Html.ActionLink("Yeni Özellik", "Create", new { id = ViewBag.SelectedProduct.ProductId }, new { })
 </p>
 <table class="table">
-    <tr> 
+    <tr>
         <th>
             @Html.DisplayNameFor(model => model.Name)
         </th>
@@ -22,21 +22,25 @@
         </th>
         <th></th>
     </tr>
-
-@foreach (var item in Model) {
-    <tr> 
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Value)
-        </td>
-        <td>
-            @Html.ActionLink("Düzenle", "Edit", new { id=item.ProductFeatureId }) |
-            @Html.ActionLink("Detaylar", "Details", new { id=item.ProductFeatureId }) |
-            @Html.ActionLink("Sil", "Delete", new { id=item.ProductFeatureId })
-        </td>
-    </tr>
-}
+    @Html.Hidden("selectedProductId", (string)ViewBag.SelectedProduct.ProductId.ToString(), new { })
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Value)
+            </td>
+            <td>
+                @Html.ActionLink("Düzenle", "Edit", new { id = item.ProductFeatureId, productId = ViewBag.SelectedProduct.ProductId }) |
+                @Html.ActionLink("Detaylar", "Details", new { id = item.ProductFeatureId, productId = ViewBag.SelectedProduct.ProductId }) |
+                @Html.ActionLink("Sil", "Delete", new { id = item.ProductFeatureId })
+            </td>
+        </tr>
+    }
 
 </table>
+<div>
+    @Html.ActionLink("Listeye Dön", "Index", "Product")
+</div>

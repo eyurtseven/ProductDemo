@@ -22,19 +22,22 @@ namespace ProductDemo.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var product = _productRepository.GetById(id.Value);
+            var product = GetCurrentProduct(id.Value);
             var productFeatures = product.ProductFeatures;
 
             ViewBag.SelectedProduct = product;
             return View(productFeatures);
         }
 
-        public ActionResult Details(int? id)
+        public ActionResult Details(int? id, int? productId)
         {
-            if (id == null)
+            if (id == null || productId == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
+            var product = GetCurrentProduct(productId.Value);
+            ViewBag.SelectedProduct = product;
 
             var productFeature = _productFeatureRepository.GetById(id.Value);
             if (productFeature == null)
@@ -62,12 +65,16 @@ namespace ProductDemo.Admin.Controllers
             return RedirectToAction("Index", new { id = id.Value });
         }
 
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(int? id, int? productId)
         {
-            if (id == null)
+            if (id == null || productId == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
+            var product = GetCurrentProduct(productId.Value);
+            ViewBag.SelectedProduct = product;
+
             var productFeature = _productFeatureRepository.GetById(id.Value);
             if (productFeature == null)
             {
@@ -85,7 +92,7 @@ namespace ProductDemo.Admin.Controllers
 
             _productFeatureRepository.Update(productFeature);
             _productFeatureRepository.Save();
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", new { id = productFeature.ProductId });
         }
 
         public ActionResult Delete(int? id)
@@ -104,11 +111,18 @@ namespace ProductDemo.Admin.Controllers
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(int id, FormCollection col)
         {
             _productFeatureRepository.Delete(id);
             _productFeatureRepository.Save();
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", new { id = col["productId"] });
         }
+
+        private Product GetCurrentProduct(int id)
+        {
+            var product = _productRepository.GetById(id);
+            return product;
+        }
+
     }
 }
