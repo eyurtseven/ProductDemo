@@ -32,6 +32,10 @@ namespace ProductDemo.Admin
                .As<IProductFeatureRepository>()
                .WithParameter("context", new ProductDemoContext());
 
+            builder.RegisterType<ProductImageRepository>()
+               .As<IProductImageRepository>()
+               .WithParameter("context", new ProductDemoContext());
+
             var container = builder.Build();
 
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));

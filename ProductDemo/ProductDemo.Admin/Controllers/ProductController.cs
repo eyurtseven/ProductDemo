@@ -6,18 +6,21 @@ using System.Web;
 using System.Web.Mvc;
 using ProductDemo.Core.Infrastructure;
 using ProductDemo.Data.Model;
+using WebGrease.Css.Extensions;
 
 namespace ProductDemo.Admin.Controllers
 {
     public class ProductController : Controller
     {
         private readonly IProductRepository _productRepository;
+        private readonly IProductImageRepository _productImageRepository;
         private readonly ICategoryRepository _categoryRepository;
 
-        public ProductController(IProductRepository productRepository, ICategoryRepository categoryRepository)
+        public ProductController(IProductRepository productRepository, ICategoryRepository categoryRepository, IProductImageRepository productImageRepository)
         {
             _productRepository = productRepository;
             _categoryRepository = categoryRepository;
+            _productImageRepository = productImageRepository;
         }
 
         public ActionResult Index()
@@ -88,27 +91,29 @@ namespace ProductDemo.Admin.Controllers
         public ActionResult Edit(Product product, HttpPostedFileBase productImage)
         {
             if (!ModelState.IsValid) return View(product);
-
-            var dbProduct = _productRepository.GetById(product.ProductId);
-            dbProduct.CategoryId = product.CategoryId;
-            dbProduct.ProductName = product.ProductName;
-
-            if (productImage != null && productImage.ContentLength > 0)
-            {
-                var img = new ProductImage();
-                img.ImageName = Path.GetFileName(productImage.FileName);
-                img.ContentType = productImage.ContentType;
-                using (var reader = new BinaryReader(productImage.InputStream))
-                {
-                    img.Content = reader.ReadBytes(productImage.ContentLength);
-                }
-                img.ProductId = dbProduct.ProductId;
-                dbProduct.ProductImages.Clear();
-                dbProduct.ProductImages = new List<ProductImage> { img };
-            }
-            
-            _productRepository.Update(dbProduct);
+            _productRepository.Update(product);
             _productRepository.Save();
+
+            if (productImage == null || productImage.ContentLength <= 0) return RedirectToAction("Index");
+
+            var img = new ProductImage
+            {
+                ImageName = Path.GetFileName(productImage.FileName),
+                ContentType = productImage.ContentType
+            };
+            using (var reader = new BinaryReader(productImage.InputStream))
+            {
+                img.Content = reader.ReadBytes(productImage.ContentLength);
+                img.ProductId = product.ProductId;
+            }
+            var existingImage = _productRepository.GetById(product.ProductId).ProductImages;
+            if (existingImage != null && existingImage.Count > 0)
+            {
+                existingImage.ForEach(x => _productImageRepository.Delete(x.ProductImageId));
+                _productImageRepository.Insert(img);
+                _productImageRepository.Save();
+            }
+
             return RedirectToAction("Index");
         }
 
