@@ -8,6 +8,8 @@ namespace ProductDemo.Data.Model
         public int ProductImageId { get; set; }
         [Required]
         public string ImageName { get; set; }
+        public string ContentType { get; set; }
+        public byte[] Content { get; set; }
 
         [Required]
         public virtual int ProductId { get; set; }

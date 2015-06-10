@@ -1,5 +1,8 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using System.Net;
+using System.Web;
 using System.Web.Mvc;
 using ProductDemo.Core.Infrastructure;
 using ProductDemo.Data.Model;
@@ -46,8 +49,19 @@ namespace ProductDemo.Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Product product)
+        public ActionResult Create(Product product, HttpPostedFileBase productImage)
         {
+            if (productImage != null && productImage.ContentLength > 0)
+            {
+                var img = new ProductImage();
+                img.ImageName = Path.GetFileName(productImage.FileName);
+                img.ContentType = productImage.ContentType;
+                using (var reader = new BinaryReader(productImage.InputStream))
+                {
+                    img.Content = reader.ReadBytes(productImage.ContentLength);
+                }
+                product.ProductImages = new List<ProductImage> { img };
+            }
             _productRepository.Insert(product);
             _productRepository.Save();
             return RedirectToAction("Index");
@@ -71,11 +85,29 @@ namespace ProductDemo.Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Product product)
+        public ActionResult Edit(Product product, HttpPostedFileBase productImage)
         {
             if (!ModelState.IsValid) return View(product);
+
+            var dbProduct = _productRepository.GetById(product.ProductId);
+            dbProduct.CategoryId = product.CategoryId;
+            dbProduct.ProductName = product.ProductName;
+
+            if (productImage != null && productImage.ContentLength > 0)
+            {
+                var img = new ProductImage();
+                img.ImageName = Path.GetFileName(productImage.FileName);
+                img.ContentType = productImage.ContentType;
+                using (var reader = new BinaryReader(productImage.InputStream))
+                {
+                    img.Content = reader.ReadBytes(productImage.ContentLength);
+                }
+                img.ProductId = dbProduct.ProductId;
+                dbProduct.ProductImages.Clear();
+                dbProduct.ProductImages = new List<ProductImage> { img };
+            }
             
-            _productRepository.Update(product);
+            _productRepository.Update(dbProduct);
             _productRepository.Save();
             return RedirectToAction("Index");
         }
@@ -106,7 +138,7 @@ namespace ProductDemo.Admin.Controllers
         private void SetCategoryList(object selectedCategory = null)
         {
             var categoryList = _categoryRepository.GetAll();
-            var selectList = new SelectList(categoryList, "CategoryId", "CategoryName", selectedCategory); 
+            var selectList = new SelectList(categoryList, "CategoryId", "CategoryName", selectedCategory);
             ViewData.Add("CategoryId", selectList);
         }
     }

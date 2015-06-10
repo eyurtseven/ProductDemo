@@ -1,4 +1,6 @@
-﻿@model ProductDemo.Data.Model.Product
+﻿@using System.Drawing
+@using System.Text
+@model ProductDemo.Data.Model.Product
 
 @{
     ViewBag.Title += " Ürün Düzenleme";
@@ -8,7 +10,7 @@
 <h2>Ürün Düzenleme</h2>
 
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Edit", "Product", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
 
@@ -29,7 +31,24 @@
                 @Html.ValidationMessageFor(model => model.ProductName, "", new { @class = "text-danger" })
             </div>
         </div>
+        @{
+    var productFirstImage = Model.ProductImages.FirstOrDefault();
+    if (productFirstImage != null)
+    {
+        <div class="form-group">
+            <div class="col-md-10">
+                <img src="@string.Format("data:{0};base64,{1}", productFirstImage.ContentType, Convert.ToBase64String(productFirstImage.Content))" alt="" />
+            </div>
+        </div>
+    }
+        }
 
+        <div class="form-group">
+            @Html.Label("Resim", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="file" name="productImage" />
+            </div>
+        </div>
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Kaydet" class="btn btn-default" />

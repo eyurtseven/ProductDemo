@@ -13,6 +13,7 @@ namespace ProductDemo.Data.Model
         public string ProductName { get; set; }
 
         public virtual ICollection<ProductFeature> ProductFeatures { get; set; }
+        public virtual ICollection<ProductImage> ProductImages { get; set; }
         [Required]
         public virtual int CategoryId { get; set; }
         [DisplayName("Kategori")]

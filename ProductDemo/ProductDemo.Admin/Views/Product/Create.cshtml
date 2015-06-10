@@ -8,7 +8,7 @@
 <h2>Yeni Ürün</h2>
 
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Create", "Product", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
 
@@ -26,6 +26,12 @@
             <div class="col-md-10">
                 @Html.EditorFor(model => model.ProductName, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.ProductName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("Resim", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="file" name="productImage" />
             </div>
         </div>
         <div class="form-group">
