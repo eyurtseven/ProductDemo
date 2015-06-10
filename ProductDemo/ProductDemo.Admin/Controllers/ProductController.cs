@@ -110,10 +110,11 @@ namespace ProductDemo.Admin.Controllers
             if (existingImage != null && existingImage.Count > 0)
             {
                 existingImage.ForEach(x => _productImageRepository.Delete(x.ProductImageId));
-                _productImageRepository.Insert(img);
-                _productImageRepository.Save();
             }
 
+            _productImageRepository.Insert(img);
+            _productImageRepository.Save();
+            
             return RedirectToAction("Index");
         }
 

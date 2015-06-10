@@ -1,4 +1,6 @@
-﻿@{
+﻿@model ProductDemo.Admin.ViewModel.HomePageModel
+
+@{
     ViewBag.Title = "Home Page";
 }
 
@@ -12,7 +14,7 @@
                             <i class="fa fa-th fa-5x"></i>
                         </div>
                         <div class="col-xs-9 text-right">
-                            <div class="huge">26</div>
+                            <div class="huge">@Model.CategoryCount</div>
                             <div>Kategori</div>
                         </div>
                     </div>
@@ -34,7 +36,7 @@
                             <i class="fa fa-tasks fa-5x"></i>
                         </div>
                         <div class="col-xs-9 text-right">
-                            <div class="huge">12</div>
+                            <div class="huge">@Model.ProductCount</div>
                             <div>Ürün</div>
                         </div>
                     </div>
@@ -56,7 +58,7 @@
                             <i class="fa fa-list-alt fa-5x"></i>
                         </div>
                         <div class="col-xs-9 text-right">
-                            <div class="huge">124</div>
+                            <div class="huge">@Model.ProductFeatureCount</div>
                             <div>Ürün Özellikleri</div>
                         </div>
                     </div>
@@ -78,7 +80,7 @@
                             <i class="fa fa-file-image-o fa-5x"></i>
                         </div>
                         <div class="col-xs-9 text-right">
-                            <div class="huge">13</div>
+                            <div class="huge">@Model.ProductImageCount</div>
                             <div>Ürün Resimleri</div>
                         </div>
                     </div>

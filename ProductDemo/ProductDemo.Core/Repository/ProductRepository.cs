@@ -52,6 +52,11 @@ namespace ProductDemo.Core.Repository
             }
         }
 
+        public int Count()
+        {
+            return _context.Product.Count();
+        }
+
         public void Save()
         {
             _context.SaveChanges();

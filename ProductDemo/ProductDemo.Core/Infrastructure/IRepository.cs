@@ -14,6 +14,7 @@ namespace ProductDemo.Core.Infrastructure
         void Insert(T obj);
         void Update(T obj);
         void Delete(int id);
+        int Count();
         void Save();
     }
 }
