@@ -1,0 +1,12 @@
+C:\Users\emre\Documents\Visual Studio 2013\Projects\ProductDemo\ProductDemo\ProductDemo.Core\bin\Debug\ProductDemo.Core.dll.config
+C:\Users\emre\Documents\Visual Studio 2013\Projects\ProductDemo\ProductDemo\ProductDemo.Core\bin\Debug\ProductDemo.Core.dll
+C:\Users\emre\Documents\Visual Studio 2013\Projects\ProductDemo\ProductDemo\ProductDemo.Core\bin\Debug\ProductDemo.Core.pdb
+C:\Users\emre\Documents\Visual Studio 2013\Projects\ProductDemo\ProductDemo\ProductDemo.Core\bin\Debug\EntityFramework.dll
+C:\Users\emre\Documents\Visual Studio 2013\Projects\ProductDemo\ProductDemo\ProductDemo.Core\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\emre\Documents\Visual Studio 2013\Projects\ProductDemo\ProductDemo\ProductDemo.Core\bin\Debug\ProductDemo.Data.dll
+C:\Users\emre\Documents\Visual Studio 2013\Projects\ProductDemo\ProductDemo\ProductDemo.Core\bin\Debug\ProductDemo.Data.pdb
+C:\Users\emre\Documents\Visual Studio 2013\Projects\ProductDemo\ProductDemo\ProductDemo.Core\bin\Debug\EntityFramework.xml
+C:\Users\emre\Documents\Visual Studio 2013\Projects\ProductDemo\ProductDemo\ProductDemo.Core\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\emre\Documents\Visual Studio 2013\Projects\ProductDemo\ProductDemo\ProductDemo.Core\obj\Debug\ProductDemo.Core.csprojResolveAssemblyReference.cache
+C:\Users\emre\Documents\Visual Studio 2013\Projects\ProductDemo\ProductDemo\ProductDemo.Core\obj\Debug\ProductDemo.Core.dll
+C:\Users\emre\Documents\Visual Studio 2013\Projects\ProductDemo\ProductDemo\ProductDemo.Core\obj\Debug\ProductDemo.Core.pdb
