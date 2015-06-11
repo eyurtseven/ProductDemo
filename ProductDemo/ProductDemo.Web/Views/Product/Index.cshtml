@@ -1,0 +1,47 @@
+﻿@model ProductDemo.Web.ViewModel.ProductPageModel
+
+<div class="row">
+
+    @Html.Partial("MainMenu", Model.CategoryList)
+
+    <div class="col-md-9">
+
+        <div class="span6">
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">@Model.CurrentProduct.ProductName</h3>
+                </div>
+                <div class="panel-body">
+                    <img width="500" height="500"
+                         src="@string.Format("data:{0};base64,{1}", Model.CurrentProduct.ProductImages.FirstOrDefault().ContentType, Convert.ToBase64String(Model.CurrentProduct.ProductImages.FirstOrDefault().Content))" />
+                </div>
+            </div>
+        </div>
+
+        <div class="span6">
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Ürün Özellikleri</h3>
+                </div>
+                <div class="panel-body">
+                    <table class="table table-striped">
+                        @foreach (var feature in Model.CurrentProduct.ProductFeatures)
+                        {
+                        <tr>
+                            <td>
+                                <strong>@feature.Name</strong>
+                            </td>
+                            <td>
+                                <span>@feature.Value</span>
+                            </td>
+                        </tr>
+                        }
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

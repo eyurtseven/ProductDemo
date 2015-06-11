@@ -4,11 +4,15 @@
     <div class="span4 product">
         <div class="product-title">
             <h3>
-                <a href="#">@product.ProductName</a>
+                @Html.ActionLink(product.ProductName, "Index", "Product", new { id = product.ProductId }, new {})
             </h3>
         </div>
         <div class="product-image">
-            <a class="#"> <img src="http://placehold.it/300x220/ffffCC/&amp;text=Product+Image"></a>
+            <a href="@Url.Action("Index", "Product", new { id = product.ProductId })">
+                <img width="300" height="220"
+                     src="@string.Format("data:{0};base64,{1}", product.ProductImages.FirstOrDefault().ContentType, Convert.ToBase64String(product.ProductImages.FirstOrDefault().Content))">
+            </a>
+
         </div>
         <div class="price">
             @{
