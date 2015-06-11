@@ -1,0 +1,21 @@
+﻿@model IEnumerable<ProductDemo.Data.Model.Category>
+
+    <div class="span4">
+
+        @{
+            if (Model.Any())
+            {
+                var categoryCounter = 1;
+                <ul class="nav nav-pills nav-stacked">
+                    @foreach (var category in Model)
+                    {
+                    <li @(((categoryCounter == 1 && ViewContext.RouteData.Values["id"] == null) || (string)ViewContext.RouteData.Values["id"] == category.CategoryId.ToString()) ? "class=active" : "")>
+                    <a href="/category/index/@category.CategoryId">@category.CategoryName</a>
+                    </li>
+                        ++categoryCounter;
+                    }
+                </ul>
+            }
+        }
+
+    </div>

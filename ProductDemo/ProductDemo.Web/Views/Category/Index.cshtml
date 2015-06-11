@@ -1,0 +1,16 @@
+﻿@model ProductDemo.Web.ViewModel.CategoryPageModel
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="row">
+
+    @Html.Partial("MainMenu", Model.CategoryList)
+
+    <div class="col-md-9">
+
+        @Html.Partial("ProductList", Model.ProductList)
+
+    </div>
+</div>

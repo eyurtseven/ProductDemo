@@ -1,0 +1,27 @@
+﻿@model IEnumerable<ProductDemo.Data.Model.Product>
+@foreach (var product in Model)
+{
+    <div class="span4 product">
+        <div class="product-title">
+            <h3>
+                <a href="#">@product.ProductName</a>
+            </h3>
+        </div>
+        <div class="product-image">
+            <a class="#"> <img src="http://placehold.it/300x220/ffffCC/&amp;text=Product+Image"></a>
+        </div>
+        <div class="price">
+            @{
+                var priceFeature = product.ProductFeatures.FirstOrDefault(x => x.Name == "Fiyat");
+                if (priceFeature != null)
+                {
+                    <span>@priceFeature.Value</span>
+                }
+                else
+                {
+                    <span>&nbsp;</span>
+                }
+            }
+        </div>
+    </div>
+}
