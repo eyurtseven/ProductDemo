@@ -1,3 +1,4 @@
+C:\Users\emre\Documents\Visual Studio 2013\Projects\ProductDemo\ProductDemo\ProductDemo.Web\obj\Debug\ProductDemo.Web.csprojResolveAssemblyReference.cache
 C:\Users\emre\Documents\Visual Studio 2013\Projects\ProductDemo\ProductDemo\ProductDemo.Web\bin\ProductDemo.Web.dll.config
 C:\Users\emre\Documents\Visual Studio 2013\Projects\ProductDemo\ProductDemo\ProductDemo.Web\bin\ProductDemo.Web.dll
 C:\Users\emre\Documents\Visual Studio 2013\Projects\ProductDemo\ProductDemo\ProductDemo.Web\bin\ProductDemo.Web.pdb
@@ -57,6 +58,11 @@ C:\Users\emre\Documents\Visual Studio 2013\Projects\ProductDemo\ProductDemo\Prod
 C:\Users\emre\Documents\Visual Studio 2013\Projects\ProductDemo\ProductDemo\ProductDemo.Web\bin\Microsoft.Owin.Security.Google.xml
 C:\Users\emre\Documents\Visual Studio 2013\Projects\ProductDemo\ProductDemo\ProductDemo.Web\bin\Microsoft.Owin.Security.Twitter.xml
 C:\Users\emre\Documents\Visual Studio 2013\Projects\ProductDemo\ProductDemo\ProductDemo.Web\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
-C:\Users\emre\Documents\Visual Studio 2013\Projects\ProductDemo\ProductDemo\ProductDemo.Web\obj\Debug\ProductDemo.Web.csprojResolveAssemblyReference.cache
 C:\Users\emre\Documents\Visual Studio 2013\Projects\ProductDemo\ProductDemo\ProductDemo.Web\obj\Debug\ProductDemo.Web.dll
 C:\Users\emre\Documents\Visual Studio 2013\Projects\ProductDemo\ProductDemo\ProductDemo.Web\obj\Debug\ProductDemo.Web.pdb
+C:\Users\emre\Documents\Visual Studio 2013\Projects\ProductDemo\ProductDemo\ProductDemo.Web\bin\System.Net.Http.Formatting.dll
+C:\Users\emre\Documents\Visual Studio 2013\Projects\ProductDemo\ProductDemo\ProductDemo.Web\bin\System.Web.Http.dll
+C:\Users\emre\Documents\Visual Studio 2013\Projects\ProductDemo\ProductDemo\ProductDemo.Web\bin\System.Web.Http.WebHost.dll
+C:\Users\emre\Documents\Visual Studio 2013\Projects\ProductDemo\ProductDemo\ProductDemo.Web\bin\System.Net.Http.Formatting.xml
+C:\Users\emre\Documents\Visual Studio 2013\Projects\ProductDemo\ProductDemo\ProductDemo.Web\bin\System.Web.Http.xml
+C:\Users\emre\Documents\Visual Studio 2013\Projects\ProductDemo\ProductDemo\ProductDemo.Web\bin\System.Web.Http.WebHost.xml

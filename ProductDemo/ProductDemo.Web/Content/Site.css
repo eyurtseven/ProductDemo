@@ -131,8 +131,8 @@ a.brand:hover { text-decoration: none; }
 .product-image { border-bottom: 1px solid rgb(227, 227, 227); }
 .product-options { background: none repeat scroll 0% 0% rgb(238, 238, 238); border-radius: 0px 0px 4px 4px; height: 55px; list-style-type: none; margin: 0px; }
 .product-options li { border-right: 1px solid rgb(212, 212, 212); float: left; font-size: 16px; line-height: 55px; text-align: center; width: 50%; box-sizing: border-box; }
-li.price { border-right: 1px solid rgb(212, 212, 212); float: left; font-size: 24px; line-height: 55px; text-align: center; }
-li.price a { color: #428bca; }
+.price { border-right: 1px solid rgb(212, 212, 212); float: left; font-size: 24px; line-height: 55px; text-align: center;width: 100%;}
+.price a { color: #428bca; }
 
 h4.featured-heading, h4.category-heading { text-align: center; text-transform: uppercase; color: rgb(85, 85, 85); margin-bottom: 20px; font-weight: 400; }
 h4.category-heading { font-size: 24px; margin-bottom: 40px; } 
